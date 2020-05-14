@@ -40,6 +40,8 @@ typedef struct cmd_struct
 {
         char *op_code;
         int value;
+        FILE *fd;
+        char *line;
 } cmd_data;
 
 /* global variable */
@@ -57,7 +59,7 @@ void _add(stack_t **stack, unsigned int line_number);
 void _nop(stack_t **stack, unsigned int line_number);
 
 /* main tools - monty.c */
-void find_cmd(char *line, unsigned int line_cnt);
+void find_cmd(char *line, unsigned int line_cntm, stack_t **stack);
 void exec_op(stack_t **stack, unsigned int line_cnt);
 void free_struct();
 

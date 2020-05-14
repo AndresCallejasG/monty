@@ -11,12 +11,12 @@
 int main(int argc, char *av[])
 {
 
-	FILE *fd;
 	stack_t *stack = NULL;
 	size_t len = 0;
-	char *line = NULL;
+	
 	unsigned int line_cnt = 0;
 
+	cmd.line = NULL;
 	cmd.op_code = NULL;
 	cmd.value = 0;
 
@@ -25,20 +25,20 @@ int main(int argc, char *av[])
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	fd = fopen(av[1], "r");
-	if (!fd)
+	cmd.fd = fopen(av[1], "r");
+	if (!(cmd.fd))
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
-	while ((getline(&line, &len, fd) != -1))
+	while ((getline(&cmd.line, &len, cmd.fd) != -1))
 	{
 		line_cnt++;
-		find_cmd(line, line_cnt);
+		find_cmd(cmd.line, line_cnt, &stack);
 		exec_op(&stack, line_cnt);
 	}
-	free(line);
-	fclose(fd);
+	free(cmd.line);
+	fclose(cmd.fd);
 	free_dlistint(stack);
 	free_struct();
 	return (0);
@@ -52,7 +52,7 @@ int main(int argc, char *av[])
  * Return: Always 0.
  */
 
-void find_cmd(char *line, unsigned int line_cnt)
+void find_cmd(char *line, unsigned int line_cnt, stack_t **stack)
 {
 	char *tok;
 	int num = 0;
@@ -68,6 +68,9 @@ void find_cmd(char *line, unsigned int line_cnt)
 		if (num == -1)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_cnt);
+			fclose(cmd.fd);
+			free(cmd.line);
+			free_dlistint(*stack);
 			free_struct();
 			exit(EXIT_FAILURE);
 		}
