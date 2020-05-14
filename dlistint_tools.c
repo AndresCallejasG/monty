@@ -45,8 +45,8 @@ stack_t *add_dnodeint(stack_t **head, int n)
 
 	if (*head)
 	{
-        (*head)->prev = NULL;
-	    (*head)->prev = new_node;
+		(*head)->prev = NULL;
+		(*head)->prev = new_node;
 		new_node->next = *head;
 	}
 	*head = new_node;
@@ -67,7 +67,8 @@ size_t print_dlistint(stack_t *h)
 	if (h)
 	{
 		current = h;
-		do {
+		do
+		{
 			length++;
 			fprintf(stdout, "%d\n", current->n);
 			current = current->next;

@@ -38,7 +38,7 @@ typedef struct instruction_s
 
 typedef struct cmd_struct
 {
-	char *op_code;
+        char *op_code;
         int value;
 } cmd_data;
 
@@ -46,15 +46,15 @@ typedef struct cmd_struct
 extern cmd_data cmd;
 
 /* op_codes */
-void _push(stack_t **stack, unsigned int linen);
-void _pall(stack_t **stack, unsigned int linen);
-void _pint(stack_t **stack, unsigned int linen);
-void _pop(stack_t **stack, unsigned int linen);
-void _swap(stack_t **stack, unsigned int linen);
+void _push(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack, unsigned int line_number);
+void _pint(stack_t **stack, unsigned int line_number);
+void _pop(stack_t **stack, unsigned int line_number);
+void _swap(stack_t **stack, unsigned int line_number);
 
 /* op_codes2 */
-void _add(stack_t **stack, unsigned int linen);
-void _nop(stack_t **stack, unsigned int linen);
+void _add(stack_t **stack, unsigned int line_number);
+void _nop(stack_t **stack, unsigned int line_number);
 
 /* main tools - monty.c */
 void find_cmd(char *line, unsigned int line_cnt);
