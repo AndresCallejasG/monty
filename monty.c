@@ -31,11 +31,13 @@ int main(int argc, char *av[])
     }
     while ((getline(&line, &len, fd) != -1))
     {
+        printf("hola pase");
         line_cnt++;
-        find_cmd(line, line_cnt);
-        free(line);
+        find_cmd(line, line_cnt);        
         exec_op(&stack, line_cnt);
     }
+    free(line);
+    fclose(fd);
     free_dlistint(stack);
     free_struct();
     return (0);
@@ -82,7 +84,8 @@ void exec_op(stack_t **stack, unsigned int line_cnt)
 {
     int i = 0;
     instruction_t op_func[] = {
-        {"push", _push}, {"pall", _pall}, {"pint", _pint}, {"pop", _pop}, {"swap", _swap}, {"add", _add}, {"nop", _nop}, {NULL, NULL}};
+        {"push", _push}, {"pall", _pall}, {"pint", _pint}, {"pop", _pop},
+        {"swap", _swap}, {"add", _add}, {"nop", _nop}, {NULL, NULL}};
 
     while (op_func[i].f != NULL)
     {
@@ -109,4 +112,5 @@ void exec_op(stack_t **stack, unsigned int line_cnt)
 void free_struct()
 {
     /* free cmd_struct */
+    /* free(cmd.op_code); */
 }

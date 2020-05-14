@@ -39,7 +39,7 @@ typedef struct instruction_s
 typedef struct cmd_struct
 {
 	char *op_code;
-    int value;
+        int value;
 } cmd_data;
 
 /* global variable */
