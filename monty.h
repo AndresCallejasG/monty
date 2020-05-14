@@ -57,8 +57,8 @@ void _add(stack_t **stack, unsigned int linen);
 void _nop(stack_t **stack, unsigned int linen);
 
 /* main tools - monty.c */
-cmd_data *find_cmd(char *line, unsigned int line_cnt);
-int exec_op(stack_t **stack, unsigned int line_cnt);
+void find_cmd(char *line, unsigned int line_cnt);
+void exec_op(stack_t **stack, unsigned int line_cnt);
 void free_struct();
 
 /* tools */
