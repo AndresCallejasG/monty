@@ -58,9 +58,9 @@ stack_t *add_dnodeint(stack_t **head, const int n)
  *
  * Return: the number of nodes
  */
-size_t print_dlistint(const stack_t *h)
+size_t print_dlistint(stack_t *h)
 {
-	const stack_t *current;
+	stack_t *current;
 	size_t length = 0;
 
 	if (h)

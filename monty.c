@@ -13,7 +13,7 @@ int main(int argc, char *av[])
 {
 
     FILE *fd;
-    stack_t **stack = NULL;
+    stack_t *stack = NULL;
     size_t len = 0;
     char *line;
     unsigned int line_cnt;
@@ -34,9 +34,9 @@ int main(int argc, char *av[])
         line_cnt++;
         find_cmd(line, line_cnt);
         free(line);
-        exec_op(stack, line_cnt);
+        exec_op(&stack, line_cnt);
     }
-    free_dlistint(*stack);
+    free_dlistint(stack);
     free_struct();
     return (0);
 }
@@ -64,7 +64,6 @@ void find_cmd(char *line, unsigned int line_cnt)
         if (num == -1)
         {
             fprintf(stderr, "L%d: usage: push integer\n", line_cnt);
-            free_dlistint(*stack);
             free_struct();
             exit(EXIT_FAILURE);
         }

@@ -67,7 +67,7 @@ int _atoi(char *s);
 /* dlistint_tools */
 void free_dlistint(stack_t *head);
 stack_t *add_dnodeint(stack_t **head, const int n);
-size_t print_dlistint(const stack_t *h);
+size_t print_dlistint(stack_t *h);
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
 stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
 
