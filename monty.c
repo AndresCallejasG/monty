@@ -34,7 +34,7 @@ int main(int argc, char *av[])
         line_cnt++;
         cmd = find_cmd(line, line_cnt);
         free(line);
-        status = exec_op(cmd, stack, line_cnt);
+        status = exec_op(stack, line_cnt);
     }
     free_dlistint(stack);
     free_struct();
@@ -48,15 +48,16 @@ int main(int argc, char *av[])
  *
  * Return: Always 0.
  */
+
 cmd_data *find_cmd(char *line, unsigned int line_cnt)
 {
-    cmd_data cmd;
     char *tok;
 
     cmd.value = 0;
     tok = strtok(line, " \n\t");
     cmd.op_code = strdup(tok);
-    if strcmp(tok, "push"){
+    if strcmp(tok, "push")
+    {
         tok = strtok(NULL, " \n\t");
         num = _atoi(tok);
         if (num == -1)
@@ -76,7 +77,7 @@ cmd_data *find_cmd(char *line, unsigned int line_cnt)
  *
  * Return: Always 0.
  */
-int exec_op(cmd_data *cmd, stack_t **stack, unsigned int line_cnt)
+int exec_op(stack_t **stack, unsigned int line_cnt)
 {
     int i;
 

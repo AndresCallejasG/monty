@@ -1,6 +1,10 @@
 #ifndef HOLBERTON
 #define HOLBERTON
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -38,9 +42,23 @@ typedef struct cmd_struct
     int value;
 } cmd_data;
 
+/* global variable */
+extern cmd_data cmd;
+
+/* op_codes */
+void _push(stack_t **stack, unsigned int linen);
+void _pall(stack_t **stack, unsigned int linen);
+void _pint(stack_t **stack, unsigned int linen);
+void _pop(stack_t **stack, unsigned int linen);
+void _swap(stack_t **stack, unsigned int linen);
+
+/* op_codes2 */
+void _add(stack_t **stack, unsigned int linen);
+void _nop(stack_t **stack, unsigned int linen);
+
 /* main tools - monty.c */
 cmd_data *find_cmd(char *line, unsigned int line_cnt);
-int exec_op(cmd_data *cmd, stack_t **stack, unsigned int line_cnt);
+int exec_op(stack_t **stack, unsigned int line_cnt);
 void free_struct();
 
 /* tools */

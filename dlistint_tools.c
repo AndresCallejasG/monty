@@ -68,7 +68,7 @@ size_t print_dlistint(const stack_t *h)
 		current = h;
 		do {
 			length++;
-			fprintf("%d\n", current->n);
+			fprintf(stdout, "%d\n", current->n);
 			current = current->next;
 
 		} while (current);
