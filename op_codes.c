@@ -3,8 +3,16 @@ cmd_data cmd;
 
 void _push(stack_t **stack, unsigned int linen)
 {
-    add_dnodeint(stack, cmd.value);
+    stack_t *node;
+
     (void) linen;
+    node = add_dnodeint(stack, cmd.value);
+    if (!node)
+    {
+        fprintf(stderr, "Error: malloc failed\n");
+        exit(EXIT_FAILURE);
+    }
+
 }
 void _pall(stack_t **stack, unsigned int linen)
 {

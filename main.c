@@ -35,7 +35,7 @@ int main(int argc, char *av[])
     while ((getline(&line, &len, fd) != -1))
     {
         line_cnt++;
-        find_cmd(line, line_cnt);        
+        find_cmd(line, line_cnt);
         exec_op(&stack, line_cnt);
     }
     free(line);
@@ -59,6 +59,7 @@ void find_cmd(char *line, unsigned int line_cnt)
     int num = 0;
 
     cmd.value = 0;
+    free(cmd.op_code);
     tok = strtok(line, " \n\t");
     cmd.op_code = strdup(tok);
     if (strcmp(tok, "push") == 0)
@@ -115,5 +116,5 @@ void exec_op(stack_t **stack, unsigned int line_cnt)
 void free_struct()
 {
     /* free cmd_struct */
-    /* free(cmd.op_code); */
+    free(cmd.op_code);
 }
