@@ -1,5 +1,5 @@
 #include "monty.h"
-cmd_data cmd;
+
 
 /**
  * main - monty interpreter main function
@@ -15,8 +15,11 @@ int main(int argc, char *av[])
     FILE *fd;
     stack_t *stack = NULL;
     size_t len = 0;
-    char *line;
-    unsigned int line_cnt;
+    char *line = NULL;
+    unsigned int line_cnt = 0;
+
+    cmd.op_code = NULL;
+    cmd.value = 0;
 
     if (argc != 2)
     {
@@ -31,7 +34,6 @@ int main(int argc, char *av[])
     }
     while ((getline(&line, &len, fd) != -1))
     {
-        printf("hola pase");
         line_cnt++;
         find_cmd(line, line_cnt);        
         exec_op(&stack, line_cnt);
@@ -59,7 +61,7 @@ void find_cmd(char *line, unsigned int line_cnt)
     cmd.value = 0;
     tok = strtok(line, " \n\t");
     cmd.op_code = strdup(tok);
-    if (strcmp(tok, "push"))
+    if (strcmp(tok, "push") == 0)
     {
         tok = strtok(NULL, " \n\t");
         num = _atoi(tok);
@@ -94,6 +96,7 @@ void exec_op(stack_t **stack, unsigned int line_cnt)
             op_func[i].f(stack, line_cnt);
             return;
         }
+        i++;
     }
     fprintf(stderr, "L%u: unknown instruction %s\n", line_cnt, cmd.op_code);
     free_dlistint(*stack);

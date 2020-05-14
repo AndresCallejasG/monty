@@ -32,7 +32,7 @@ void free_dlistint(stack_t *head)
  * Return: the address of the new element
  * or NULL if it failed
  */
-stack_t *add_dnodeint(stack_t **head, const int n)
+stack_t *add_dnodeint(stack_t **head, int n)
 {
 	stack_t *new_node;
 
