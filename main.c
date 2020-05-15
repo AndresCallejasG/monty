@@ -35,6 +35,8 @@ int main(int argc, char *av[])
 	{
 		line_cnt++;
 		find_cmd(cmd.line, line_cnt, &stack);
+		if (cmd.op_code[0] == '#' || cmd.op_code == NULL)
+			continue;
 		exec_op(&stack, line_cnt);
 	}
 	free(cmd.line);
