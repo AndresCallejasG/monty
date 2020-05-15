@@ -101,6 +101,8 @@ void exec_op(stack_t **stack, unsigned int line_cnt)
 		i++;
 	}
 	fprintf(stderr, "L%u: unknown instruction %s\n", line_cnt, cmd.op_code);
+	free(cmd.line);
+	fclose(cmd.fd);
 	free_dlistint(*stack);
 	free_struct();
 	exit(EXIT_FAILURE);
